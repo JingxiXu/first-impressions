@@ -19,7 +19,7 @@ VIDEOFEATURESLMCOLS = 0
 
 opt = {}
 opt.modelType = 'LSTMSpatial'
-opt.save = paths.concat(lfs.currentdir(), opt.modelType .. '-' .. os.date("%d-%b-%Y-%H:%M:%S"))
+opt.save = paths.concat(lfs.currentdir(), opt.modelType .. '-' .. os.date("%d-%b-%Y-%H-%M-%S"))
 opt.useCuda = true; --true / false
 opt.type='cuda'
 opt.optimization = 'SGD'   -- CG  | LBFGS  |  SGD   | ASGD
@@ -65,6 +65,7 @@ epoch = 1
 
 --start training
 while epoch <= 10000 do
+   logger.debug('epoch: ', epoch)
    -- train for 100 epochs
    for index = 1, 100 do 
       train()

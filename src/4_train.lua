@@ -110,13 +110,17 @@ function train()
     -- for each batch, collect the features
     for i = t, math.min(t+opt.batchSize-1,totalTrainFiles) do
       -- load new sample
+      logger.debug('i', i)
       local inputfile = trainaudiofiles[shuffle[i]]
+      logger.debug('inputfile', inputfile)
       local mp4name = path.basename(inputfile):gsub('.wav.csv', '')
+      logger.debug('mp4name', mp4name)
       local inputaudio = trainAudioData[mp4name]
 
       if(not opt.LSTM) then
         target = trainTargets[mp4name]
       else
+        -- print('trainTargets[', mp4name, ']: ', trainTargets[mp4name], 'opt.targetScaleFactor: ', opt.targetScaleFactor, 'VIDEOFEATURESROWS: ', VIDEOFEATURESROWS)
         target = torch.repeatTensor(trainTargets[mp4name] * opt.targetScaleFactor,VIDEOFEATURESROWS,1)
       end
 
@@ -148,7 +152,7 @@ function train()
 
       -- evaluate function for complete mini batch
       for i = 1,#targets do
-        --get the vide frames data
+        --get the video frames data
         local trainVideoData = prepareVideoFramesData({[mp4names[i]]=1}, VIDEOFEATURESROWS, 'train',opt.LSTM)
         if(opt.type == 'cuda') then trainVideoData[mp4names[i]] = trainVideoData[mp4names[i]]:cuda() end
             

@@ -15,8 +15,8 @@ logger.outfile = opt.logFile
 require 'pl'
 
 -- file paths
-trainAudioFeaturePath = '../data/trainaudiofeat';
-validationAudioFeaturePath = '../data/validationaudiofeat';
+trainAudioFeaturePath = '/dvmm-filer2/datasets/PersonalityVideos/ECCV/trainaudiofeat';
+validationAudioFeaturePath = '/dvmm-filer2/datasets/PersonalityVideos/ECCV/validationaudiofeat';
 
 --collect all file/folder names in current directory 
 trainaudiofiles = dir.getallfiles(trainAudioFeaturePath)

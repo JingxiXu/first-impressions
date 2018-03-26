@@ -82,7 +82,7 @@ local create_output = function (level, filename, fileline, ...)
                               levelname, os.date(), lineinfo, msg)
     fp:write(str)
     fp:close()
-  end
+  end 
 end
 
 
