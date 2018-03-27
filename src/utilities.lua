@@ -624,10 +624,14 @@ end
 
 prepare the video frames data with random indices 
 
+ROWS = 6
+
+That is the function that we need for DVMM
+
 --]]
 function prepareVideoFramesData(rawData, ROWS, category, isLSTM)
   
-  local videoFramesPath = '/media/data/arul/personalitytraits/data/'.. category .. 'frames/'
+  local videoFramesPath = '/dvmm-filer2/datasets/PersonalityVideos/ECCV/'.. category .. 'frames/'
   local allMp4Names = table.getAllKeys(rawData)
   local preparedWholeData = {}
   local unsqueezer = nn.Unsqueeze(2)
@@ -642,11 +646,15 @@ function prepareVideoFramesData(rawData, ROWS, category, isLSTM)
     local preparedData = nil
     
     for row = 1, ROWS do
-      --frame index starts from 0
-      local currentRowIndex = ((row-1) * validFileIndices) + torch.random(validFileIndices) - 1
+      --frame index starts from 1
+      local currentRowIndex = ((row-1) * validFileIndices) + torch.random(validFileIndices)
       
       --framename determination
-      framepath = path.join(currentFolderPath, string.format("frame_det_%06d.png", currentRowIndex))
+      -- logger.debug('mp4name: ', mp4name)
+      -- logger.debug('currentFolderPath: ', currentFolderPath)
+      -- logger.debug('currentRowIndex: ', currentRowIndex)
+      framepath = path.join(currentFolderPath, string.format("frame_det_00_%06d.png", currentRowIndex))
+      -- logger.debug('framepath: ', framepath)
       tempImage = image.load(framepath)
       
       if(preparedData == nil) then

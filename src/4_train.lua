@@ -110,11 +110,11 @@ function train()
     -- for each batch, collect the features
     for i = t, math.min(t+opt.batchSize-1,totalTrainFiles) do
       -- load new sample
-      logger.debug('i', i)
+      -- logger.debug('i', i)
       local inputfile = trainaudiofiles[shuffle[i]]
-      logger.debug('inputfile', inputfile)
+      -- logger.debug('inputfile', inputfile)
       local mp4name = path.basename(inputfile):gsub('.wav.csv', '')
-      logger.debug('mp4name', mp4name)
+      -- logger.debug('mp4name', mp4name)
       local inputaudio = trainAudioData[mp4name]
 
       if(not opt.LSTM) then
