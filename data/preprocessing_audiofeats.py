@@ -71,11 +71,11 @@ def extractMFCCFeatures(filepath):
 def audioPreprocess(rootpath):
 	global basepath
 	basepath = rootpath            
-	extractWavFile(basepath)
+	# extractWavFile(basepath)
 	basepath = rootpath + 'audio'
 	sizeArray = None
 	logging.basicConfig(filename=basepath+'_modifiedrate.log',level=logging.INFO)
-	extractMFCCFeatures(basepath)
+	# extractMFCCFeatures(basepath)
 
 	# remove the .npy, .wav_st.csv files
 	subprocess.call("rm -f " + rootpath + "audiofeat/*/*.npy", shell=True)
